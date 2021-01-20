@@ -8,8 +8,12 @@
 </head>
 <body>
     <nav class="navbar navbar-light bg-light">
-        <a href="/" class="navbar-brand m-2 h1">家庭記帳本</a>
-        <a href="/users/logout" class="navbar-brand m-2 h1">登出</a>
+        <a href="/" class="navbar-brand m-2 h1">
+            {{#if user.name}}
+            {{user.name}}的{{/if}}家庭記帳本</a>
+        {{#if isAuthenticated}}
+            <a href="/users/logout" class="navbar-brand m-2 h1">登出</a>
+        {{/if}}
     </nav>
     
     {{{body}}}
