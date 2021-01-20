@@ -1,0 +1,39 @@
+<!--  dropdown and total  -->
+<div class="container mt-5 mx-auto col-8 col-sm-6 col-lg-3">
+    <div class="form-group d-flex flex-row mt-5">
+        <select class="form-control" id="exampleFormControlSelect1" name="category" onchange="javascript:location.href=this.value;">
+            <option value="/">所有類別</option>
+            <option value="/filter/household" {{#if isCategory.household}}selected{{/if}}>家居物業</option>
+            <option value="/filter/traffic" {{#if isCategory.traffic}}selected{{/if}}>交通出行</option>
+            <option value="/filter/entertainment" {{#if isCategory.entertainment}}selected{{/if}}>休閒娛樂</option>
+            <option value="/filter/food" {{#if isCategory.food}}selected{{/if}}>餐飲食品</option>
+            <option value="/filter/others" {{#if isCategory.others}}selected{{/if}}>其他</option>
+        </select>
+    </div>
+    <div class="container mx-auto d-flex justify-content-center align-items-center">
+        <span style="font-size: 20px">總金額:</span>
+        <span style="font-size: 70px; color: #ff8c00; font-family: sans-serif" class="ml-3">{{totalAmount}}</span>
+    </div>
+</div>
+
+
+<!--  expense cards  -->
+<div class="container mt-5 d-flex flex-column justify-content-center" name="recordCardContainer">
+    {{#each record}}
+    <div class="container mx-auto d-flex col-12 col-sm-12 col-lg-9" style="height: 4rem; border: 1px solid #d3d3d3; border-radius: 5px; padding-top: 0.5rem">
+        {{{this.icon}}}
+        <div class="container d-flex flex-row ml-1 col-6 col-sm-5 col-lg-5">
+            <div class="container d-flex flex-column" name="expenseNameAndDate">
+                <span>{{this.name}}</span>
+                <span style="font-family: sans-serif">{{this.date}}</span>
+            </div>
+            <span class="my-auto" style="display:block; font-family: sans-serif">{{this.amount}}</span>
+        </div>
+        <form action="/records/{{this._id}}?_method=DELETE" method="POST" class="d-flex flex-row ml-4 align-items-center" onsubmit="return confirm('確定刪除{{this.name}}？')">
+            <a href="/records/{{this._id}}/edit" class="inline mr-3 btn btn-outline-secondary">修改</a>
+            <button type="button submit" class="btn btn-outline-danger">刪除</button>
+        </form>
+    </div>
+    {{/each}}
+    <a class="btn btn-outline-primary mt-5 mx-auto" href="/records/new" role="button">新增支出</a>
+</div>

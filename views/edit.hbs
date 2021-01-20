@@ -1,0 +1,31 @@
+<div class="container mx-auto col-10 col-sm-8 col-lg-3">
+    <span style="text-align: center; display: block; font-size: 25px" class="my-5">請修改你的支出</span>
+    <form action="/records/{{record._id}}?_method=PUT" method="POST" onsubmit="return confirm('確認修改？')">
+        <div class="form-group d-flex flex-row">
+            <label for="exampleInputEmail1" style="width: 20%">名稱:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="name" required value="{{record.name}}">
+        </div>
+        <div class="form-group d-flex flex-row mt-5">
+            <label for="exampleInputPassword1" style="width: 20%">日期:</label>
+            <input type="date" class="form-control" id="exampleInputPassword1" name="date" required value="{{record.date}}">
+        </div>
+        <div class="form-group d-flex flex-row mt-5">
+            <label for="exampleFormControlSelect1" style="width: 20%">類別:</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="category">
+                <option value="household" {{#if isCategory.household}}selected{{/if}}>家居物業</option>
+                <option value="traffic" {{#if isCategory.traffic}}selected{{/if}}>交通出行</option>
+                <option value="entertainment" {{#if isCategory.entertainment}}selected{{/if}}>休閒娛樂</option>
+                <option value="food" {{#if isCategory.food}}selected{{/if}}>餐飲食品</option>
+                <option value="others" {{#if isCategory.others}}selected{{/if}}>其他</option>
+            </select>
+        </div>
+        <div class="form-group d-flex flex-row mt-5">
+            <label for="exampleInputEmail1" style="width: 20%">金額:</label>
+            <input type="number" class="form-control" id="exampleInputEmail1" name="amount" required value="{{record.amount}}">
+        </div>
+        <div class="mt-5" style="text-align: center">
+            <button type="submit" class="btn btn-outline-primary">修改</button>
+            <a href="/" class="inline ml-3 btn btn-outline-secondary">返回</a>
+        </div>
+    </form>
+</div>
