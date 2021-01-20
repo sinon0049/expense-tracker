@@ -11,6 +11,7 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
     const newRecord = Object.assign(req.body)
     newRecord.icon = icon[newRecord.category]
+    newRecord.userId = req.user._id
     Record.create(newRecord)
     .then(res.redirect('/'))
     .catch(error => console.log(error))
@@ -18,7 +19,8 @@ router.post('/', (req, res) => {
 
 //edit page and function
 router.get('/:id/edit', (req, res) => {
-    const id = req.params.id
+    const _id = req.params.id
+    const userId = req.user._id
     let isCategory = {
         household : false,
         traffic : false,
@@ -26,7 +28,7 @@ router.get('/:id/edit', (req, res) => {
         food : false,
         others : false
     }
-    Record.findById(id)
+    Record.findOne({ _id, userId })
     .lean()
     .then(record => {
         //dropdown select in edit.hbs
@@ -53,8 +55,9 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    const id = req.params.id
-    Record.findById(id)
+    const _id = req.params.id
+    const userId = req.user._id
+    Record.findOne({ _id, userId })
     .then(record => {
         record.name = req.body.name
         record.category = req.body.category
@@ -69,8 +72,9 @@ router.put('/:id', (req, res) => {
 
 //delete function
 router.delete('/:id', (req, res) => {
-    const id = req.params.id
-    Record.findById(id)
+    const _id = req.params.id
+    const userId = req.user._id
+    Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(res.redirect('/'))
     .catch(error => console.log(error))

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const user = require('./user')
 const Schema = mongoose.Schema
 const recordSchema = new Schema({
     name: {
@@ -19,6 +20,12 @@ const recordSchema = new Schema({
     },
     icon: {
         type: String,
+        required: true
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        index: true,
         required: true
     }
 })

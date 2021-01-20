@@ -6,7 +6,8 @@ const icon = require('../../models/icon')
 //homepage
 router.get('/', (req, res) => {
     let totalAmount = 0
-    Record.find()
+    const userId = req.user._id
+    Record.find({ userId })
     .lean()
     .then(record => {
         record.forEach(record => totalAmount += record.amount)
@@ -26,6 +27,7 @@ router.get('/filter/:category', (req, res) => {
     }
     let totalAmount = 0
     const category = req.params.category
+    const userId = req.user._id
     //dropdown select in index.hbs
     switch(category) {
         case 'household':
@@ -44,7 +46,7 @@ router.get('/filter/:category', (req, res) => {
             isCategory.others = true
             break
     }
-    Record.find({ category: category })
+    Record.findOne({ category, userId })
     .lean()
     .then(record => {
         record.forEach(record => totalAmount += record.amount)
