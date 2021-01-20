@@ -6,16 +6,16 @@ module.exports = app => {
     app.use(passport.initialize())
     app.use(passport.session())
     //local login strategy
-    passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
         User.findOne({ email })
             .then(user => {
                 if(!user) {
-                    return done(null, false, { message:'That email is not registered!' })
+                    return done(null, false, req.flash('warning_msg', '該信箱尚未註冊!'))
                 }
                 if(password !== user.password){
-                    return done(null, false, { message:'Email or password incorrect.' })
+                    return done(null, false, req.flash('warning_msg', '信箱或密碼錯誤!'))
                 }
-                return done(null, user)
+                return done(null, user, req.flash('success_msg', '您已成功登入。'))
             })
             .catch(err => console.log(err))
     }))

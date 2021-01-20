@@ -21,19 +21,21 @@ router.get('/register', (req, res) => {
 
 //register function
 router.post('/register', (req, res) => {
-    console.log(req.body)
     const{ name, email, password, confirmPassword } = req.body
+    const errors = []
     if(password !== confirmPassword) {
-        console.log('密碼與確認密碼不符')
-        return res.render('register', { name, email, password, confirmPassword })
+        errors.push({ message: '密碼和確認密碼不符!' })
     }
     User.findOne({ email })
         .then(user => {
             if(user) {
-                console.log('此信箱已註冊')
-                return res.render('register', { name, email, password, confirmPassword })
-            } else {
-                User.create({ name, email, password })
+                errors.push({ message: '此信箱已註冊!' })
+            } 
+            if(errors) {
+                return res.render('register', { name, email, password, confirmPassword, errors })
+            }
+            else {
+                return User.create({ name, email, password })
                     .then(() => res.redirect('/'))
             }
         })
@@ -43,6 +45,7 @@ router.post('/register', (req, res) => {
 //logout function
 router.get('/logout', (req, res) => {
     req.logout()
+    req.flash('success_msg', '您已成功登出。')
     res.redirect('/users/login')
 })
 
