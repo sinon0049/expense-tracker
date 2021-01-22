@@ -10,10 +10,6 @@ const seedUser = {
 }
 
 db.once('open', () => {
-    /*recordList.results.forEach(record => {
-        Record.create(record)
-    })
-    console.log('seeds create success')*/
     bcrypt.genSalt(10)
         .then(salt => bcrypt.hash(seedUser.password, salt))
         .then(hash => User.create({ email: seedUser.email, password: hash}))

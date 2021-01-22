@@ -1,15 +1,32 @@
 <!--  dropdown and total  -->
 <div class="container mt-5 mx-auto col-8 col-sm-6 col-lg-3">
     {{>message}}
-    <div class="form-group d-flex flex-row mt-5">
-        <select class="form-control" id="exampleFormControlSelect1" name="category" onchange="javascript:location.href=this.value;">
-            <option value="/">所有類別</option>
-            <option value="/filter/household" {{#if isCategory.household}}selected{{/if}}>家居物業</option>
-            <option value="/filter/traffic" {{#if isCategory.traffic}}selected{{/if}}>交通出行</option>
-            <option value="/filter/entertainment" {{#if isCategory.entertainment}}selected{{/if}}>休閒娛樂</option>
-            <option value="/filter/food" {{#if isCategory.food}}selected{{/if}}>餐飲食品</option>
-            <option value="/filter/others" {{#if isCategory.others}}selected{{/if}}>其他</option>
-        </select>
+    <div class="form-group mt-5">
+        <form class="d-flex flex-row" action="" method="GET">
+            <select class="form-control mr-3" id="exampleFormControlSelect1" name="currentCategory" onchange="submit();">
+                <option value="">所有類別</option>
+                <option value="household" {{#compareCategory currentCategory 'household'}}selected{{/compareCategory}}>家居物業</option>
+                <option value="traffic" {{#compareCategory currentCategory 'traffic'}}selected{{/compareCategory}}>交通出行</option>
+                <option value="entertainment" {{#compareCategory currentCategory 'entertainment'}}selected{{/compareCategory}}>休閒娛樂</option>
+                <option value="food" {{#compareCategory currentCategory 'food'}}selected{{/compareCategory}}>餐飲食品</option>
+                <option value="others" {{#compareCategory currentCategory 'others'}}selected{{/compareCategory}}>其他</option>
+            </select>
+            <select class="form-control" id="exampleFormControlSelect1" name="currentMonth" onchange="submit();">
+                <option value="">所有月份</option>
+                <option value="1" {{#compareMonth currentMonth '1'}}selected{{/compareMonth}}>一月</option>
+                <option value="2" {{#compareMonth currentMonth '2'}}selected{{/compareMonth}}>二月</option>
+                <option value="3" {{#compareMonth currentMonth '3'}}selected{{/compareMonth}}>三月</option>
+                <option value="4" {{#compareMonth currentMonth '4'}}selected{{/compareMonth}}>四月</option>
+                <option value="5" {{#compareMonth currentMonth '5'}}selected{{/compareMonth}}>五月</option>
+                <option value="6" {{#compareMonth currentMonth '6'}}selected{{/compareMonth}}>六月</option>
+                <option value="7" {{#compareMonth currentMonth '7'}}selected{{/compareMonth}}>七月</option>
+                <option value="8" {{#compareMonth currentMonth '8'}}selected{{/compareMonth}}>八月</option>
+                <option value="9" {{#compareMonth currentMonth '9'}}selected{{/compareMonth}}>九月</option>
+                <option value="10" {{#compareMonth currentMonth '10'}}selected{{/compareMonth}}>十月</option>
+                <option value="11" {{#compareMonth currentMonth '11'}}selected{{/compareMonth}}>十一月</option>
+                <option value="12" {{#compareMonth currentMonth '12'}}selected{{/compareMonth}}>十二月</option>
+            </select>
+        </form>
     </div>
     <div class="container mx-auto d-flex justify-content-center align-items-center">
         <span style="font-size: 20px">總金額:</span>
