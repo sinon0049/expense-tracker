@@ -46,7 +46,7 @@ router.get('/filter/:category', (req, res) => {
             isCategory.others = true
             break
     }
-    Record.findOne({ category, userId })
+    Record.find({ category, userId })
     .lean()
     .then(record => {
         record.forEach(record => totalAmount += record.amount)
