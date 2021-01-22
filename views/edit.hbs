@@ -1,16 +1,17 @@
 <div class="container mx-auto col-10 col-sm-8 col-lg-3">
     <span style="text-align: center; display: block; font-size: 25px" class="my-5">請修改你的支出</span>
+    <p style="color: red;">*為必填</p>
     <form action="/records/{{record._id}}?_method=PUT" method="POST" onsubmit="return confirm('確認修改？')">
         <div class="form-group d-flex flex-row">
-            <label for="exampleInputEmail1" style="width: 20%">名稱:</label>
+            <label for="exampleInputEmail1" style="width: 20%"><span style="color: red;">*</span>名稱:</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="name" required value="{{record.name}}">
         </div>
         <div class="form-group d-flex flex-row mt-5">
-            <label for="exampleInputPassword1" style="width: 20%">日期:</label>
+            <label for="exampleInputPassword1" style="width: 20%"><span style="color: red;">*</span>日期:</label>
             <input type="date" class="form-control" id="exampleInputPassword1" name="date" required value="{{record.date}}">
         </div>
         <div class="form-group d-flex flex-row mt-5">
-            <label for="exampleFormControlSelect1" style="width: 20%">類別:</label>
+            <label for="exampleFormControlSelect1" style="width: 20%"><span style="color: red;">*</span>類別:</label>
             <select class="form-control" id="exampleFormControlSelect1" name="category">
                 <option value="household" {{#compareCategory category 'household'}}selected{{/compareCategory}}>家居物業</option>
                 <option value="traffic" {{#compareCategory category 'traffic'}}selected{{/compareCategory}}>交通出行</option>
@@ -20,11 +21,11 @@
             </select>
         </div>
         <div class="form-group d-flex flex-row mt-5">
-            <label for="exampleInputEmail1" style="width: 20%">金額:</label>
+            <label for="exampleInputEmail1" style="width: 20%"><span style="color: red;">*</span>金額:</label>
             <input type="number" class="form-control" id="exampleInputEmail1" name="amount" min="0" required value="{{record.amount}}">
         </div>
         <div class="form-group d-flex flex-row mt-5">
-            <label for="exampleInputEmail1" style="width: 20%">商家:</label>
+            <label for="exampleInputEmail1" style="width: 20%"><span style="color: red;">*</span>商家:</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="merchant" required value="{{record.merchant}}">
         </div>
         <div class="mt-5" style="text-align: center">
