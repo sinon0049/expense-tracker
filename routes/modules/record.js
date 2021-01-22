@@ -47,7 +47,7 @@ router.put('/:id', (req, res) => {
         record.category = req.body.category
         record.date = req.body.date
         record.amount = req.body.amount
-        record.icon = icon[req.body.category]
+        record.merchant = req.body.merchant
         return record.save()
     })
     .then(res.redirect('/'))

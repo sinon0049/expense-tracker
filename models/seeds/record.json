@@ -3,36 +3,41 @@
         {
             "name": "午餐",
             "category": "food",
-            "date": "2019-04-23",
+            "date": "2019-04-01",
             "amount": 60,
+            "merchant": "McDonalds",
             "icon": "<i class=\"fas fa-utensils fa-3x col-2 col-sm-2 col-lg-1\"></i>"
         },
         {
             "name": "晚餐",
             "category": "food",
-            "date": "2019-04-23",
+            "date": "2019-03-31",
             "amount": 60,
+            "merchant": "7-11",
             "icon": "<i class=\"fas fa-utensils fa-3x col-2 col-sm-2 col-lg-1\"></i>"
         },
         {
             "name": "捷運",
             "category": "traffic",
-            "date": "2019-04-23",
+            "date": "2019-04-01",
             "amount": 120,
+            "merchant": "MRT",
             "icon": "<i class=\"fas fa-shuttle-van fa-3x col-2 col-sm-2 col-lg-1\"></i>"
         },
         {
             "name": "電影:驚奇隊長",
             "category": "entertainment",
-            "date": "2019-04-23",
+            "date": "2019-03-31",
             "amount": 220,
+            "merchant": "VieShow",
             "icon": "<i class=\"fas fa-grin-beam fa-3x col-2 col-sm-2 col-lg-1\"></i>"
         },
         {
             "name": "租金",
             "category": "household",
-            "date": "2019-04-23",
+            "date": "2019-02-28",
             "amount": 25000,
+            "merchant": "房東",
             "icon": "<i class=\"fas fa-home fa-3x col-2 col-sm-2 col-lg-1\"></i>"
         }
     ]
