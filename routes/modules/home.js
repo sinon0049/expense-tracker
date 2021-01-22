@@ -18,19 +18,19 @@ handlebars.registerHelper('compareCategory', (current, category, options) => {
 router.get('/', (req, res) => {
     let totalAmount = 0
     const userId = req.user._id
-    const { currentCategory, currentMonth } = req.query
+    const { category, month } = req.query
     //selection function
     return Record.find({ userId })
         .lean()
         .then(record => {
-            if(currentMonth){
+            if(month){
                 record = record.filter((item) => {
-                    const month = new Date(Date.parse(item.date)).getMonth() + 1
-                    return month === parseInt(currentMonth, 10)
+                    const currentMonth = new Date(Date.parse(item.date)).getMonth() + 1
+                    return currentMonth === parseInt(month, 10)
                 })
             }
-            if(currentCategory){
-                record = record.filter((item) => item.category === currentCategory)
+            if(category){
+                record = record.filter((item) => item.category === category)
             }
             return record
         })
@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
             record.forEach(record => {
                 totalAmount += record.amount
             })
-            res.render('index', { record, totalAmount, currentMonth, currentCategory })
+            res.render('index', { record, totalAmount, month, category })
         })
         .catch(error => console.log(error))
 })

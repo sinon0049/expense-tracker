@@ -2,12 +2,19 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const icon = require('../../models/icon')
+const handlebars = require('handlebars')
 
-//create page and function
+//compareCategory helper to maintain 'select' element in index.hbs
+handlebars.registerHelper('compareCategory', (current, category, options) => {
+    return (current === category) ? options.fn(this) : options.inverse(this)
+})
+
+//create page
 router.get('/new', (req, res) => {
     res.render('new')
 })
 
+//create function
 router.post('/', (req, res) => {
     const newRecord = Object.assign(req.body)
     newRecord.icon = icon[newRecord.category]
@@ -17,43 +24,20 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//edit page and function
+//edit page
 router.get('/:id/edit', (req, res) => {
     const _id = req.params.id
     const userId = req.user._id
-    let isCategory = {
-        household : false,
-        traffic : false,
-        entertainment : false,
-        food : false,
-        others : false
-    }
     Record.findOne({ _id, userId })
     .lean()
     .then(record => {
-        //dropdown select in edit.hbs
-        switch(record.category) {
-            case 'household':
-                isCategory.household = true
-                break
-            case 'traffic':
-                isCategory.traffic = true
-                break
-            case 'entertainment':
-                isCategory.entertainment = true
-                break
-            case 'food':
-                isCategory.food = true
-                break
-            case 'others':
-                isCategory.others = true
-                break
-        }
-        res.render('edit', { record, isCategory })
+        const category = record.category
+        res.render('edit', { record, category })
     })
     .catch(error => console.log(error))
 })
 
+//edit function
 router.put('/:id', (req, res) => {
     const _id = req.params.id
     const userId = req.user._id
