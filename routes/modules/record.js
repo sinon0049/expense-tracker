@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
-const icon = require('../../models/icon')
 const handlebars = require('handlebars')
 
 //compareCategory helper to maintain 'select' element in index.hbs
@@ -16,12 +15,12 @@ router.get('/new', (req, res) => {
 
 //create function
 router.post('/', (req, res) => {
-    const newRecord = Object.assign(req.body)
-    newRecord.icon = icon[newRecord.category]
-    newRecord.userId = req.user._id
-    Record.create(newRecord)
-    .then(res.redirect('/'))
-    .catch(error => console.log(error))
+    const { name, date, category, amount, merchant } = req.body
+    const userId = req.user._id
+    Record.create({ name, date, category, amount, merchant, userId })
+        .then(res.redirect('/'))
+        .catch(error => console.log(error))
+    
 })
 
 //edit page
