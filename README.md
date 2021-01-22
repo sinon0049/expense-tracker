@@ -3,20 +3,21 @@
 This is an expense tracker which you record your expense.
 
 ## Features
+First, create an account with your email or Facebook.
 
-You can click "新增支出(create a new expense)" to create a new record, and you can choose one of the five categories:
+Then, you can click "新增支出(create a new expense)" to create a new record, and you can choose one of the five categories:
   + 居家物業(household)
   + 交通出行(traffic)
   + 休閒娛樂(entertainment)
   + 餐飲食品(food)
   + 其他(others)
   
-Besides, you can choose any category(or "所有類別", which means all of them) to select which category you want to check and their total amount.
+Besides, you can choose category(類別) or month(月份) to select which category or month you want to check and their total amount.
 
 Of course, you can also edit and delete any expense record at any time.
 
 ## Download, install and run
-If you don't want to download, you can use [online version on heroku](https://gentle-waters-35764.herokuapp.com/).
+If you don't want to download, you can use [online version on heroku](https://limitless-taiga-78110.herokuapp.com/users/login).
 
 If you want to download it, then
 
@@ -25,17 +26,9 @@ If you want to download it, then
 git clone https://github.com/sinon0049/expense-tracker.git
 ```
 + Download MongoDB and create a database called "expense"
-+ Download Express and Handlebars in the folder ```expense-tracker```
++ Download necessary middlewares in the folder ```expense-tracker```
 ```
-npm i express
-npm i express-handlebars
-npm i body-parser
-npm i mongoose
-npm i method-override
-```
-or install them together
-```
-npm i express express-handlebars body-parser mongoose method-override
+npm install
 ```
 + Use npm command to add seed data
 ```
@@ -51,6 +44,7 @@ Expense tracker is listening on http://localhost:3000
 mongodb connected!
 ```
 , and you can use it on your browser with the address http://localhost:3000/
++ You can see ```.env.example```, where there are some data needed to run the project
 
 ## Environments and utilities
 + Node.js v10.15.0
@@ -62,3 +56,8 @@ mongodb connected!
 + MongoDB
 + Mongoose 5.10.14
 + Method-override 3.0.0
++ bcrypt-js 2.4.3
++ body-parser 1.19.0
++ connect-flash 0.1.1
++ dotenv 8.2.0
++ Passport 0.4.1
