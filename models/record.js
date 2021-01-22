@@ -18,10 +18,6 @@ const recordSchema = new Schema({
         type: Number,
         required: true
     },
-    icon: {
-        type: String,
-        required: true
-    },
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User',

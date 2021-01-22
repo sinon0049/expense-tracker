@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const handlebars = require('handlebars')
-const icon = require('../../models/icon')
+const icons = require('../../models/icon')
 
 //compareMonth helper to maintain 'select' element in index.hbs
 handlebars.registerHelper('compareMonth', (current, month, options) => {
@@ -12,6 +12,14 @@ handlebars.registerHelper('compareMonth', (current, month, options) => {
 //compareCategory helper to maintain 'select' element in index.hbs
 handlebars.registerHelper('compareCategory', (current, category, options) => {
     return (current === category) ? options.fn(this) : options.inverse(this)
+})
+
+handlebars.registerHelper('printIcon', (category, options) => {
+    for(let key of Object.keys(icons)){
+        if(category === key) {
+            return icons[key]
+        }
+    }
 })
 
 //homepage

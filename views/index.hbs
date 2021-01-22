@@ -39,7 +39,7 @@
 <div class="container mt-5 d-flex flex-column justify-content-center" name="recordCardContainer">
     {{#each record}}
     <div class="container mx-auto d-flex col-12 col-sm-12 col-lg-9" style="height: 4rem; border: 1px solid #d3d3d3; border-radius: 5px; padding-top: 0.5rem">
-        {{{this.icon}}}
+        {{#printIcon this.category}}  {{/printIcon}}
         <div class="container d-flex flex-row ml-1 col-6 col-sm-5 col-lg-5">
             <div class="container d-flex flex-column" name="expenseNameAndDate">
                 <span>{{this.name}}</span>
